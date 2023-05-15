@@ -6,13 +6,13 @@ import dateutil.parser
 import hashlib
 import logging
 import datetime
-import smartapi.smartExceptions as ex
+import SmartApi.smartExceptions as ex
 import requests
 from requests import get
 import re, uuid
 import socket
 import platform
-from smartapi.version import __version__, __title__
+from SmartApi.version import __version__, __title__
 
 log = logging.getLogger(__name__)
 #user_sys=platform.system()
@@ -222,9 +222,9 @@ class SmartConnect(object):
         """Alias for sending a GET request."""
         return self._request(route, "GET", params)
 
-    def generateSession(self,clientCode,password,totp):
+    def generateSession(self,clientCode,password):
         
-        params={"clientcode":clientCode,"password":password,"totp":totp}
+        params={"clientcode":clientCode,"password":password}
         loginResultObject=self._postRequest("api.login",params)
         
         if loginResultObject['status']==True:
